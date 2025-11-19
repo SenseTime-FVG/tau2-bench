@@ -24,7 +24,7 @@ from tau2.data_model.message import Message
 from tau2.data_model.tasks import Action, EnvAssertion, RewardType, Task
 from tau2.environment.environment import EnvironmentInfo
 from tau2.utils.utils import get_now
-
+  
 
 class RunConfig(BaseModel):
     domain: Annotated[
@@ -176,6 +176,14 @@ class RunConfig(BaseModel):
             default=None,
         ),
     ]
+
+    api_key: Annotated[
+        Optional[str],
+        Field(
+            description="API base KEY for the model provider",
+            default=None,
+        ),
+    ]
     # LightLLM相关参数
     top_p: Annotated[
         float,
@@ -247,7 +255,7 @@ class RunConfig(BaseModel):
             default=True,
         ),
     ]
-    
+
     def validate(self) -> None:
         """
         Validate the run config
