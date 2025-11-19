@@ -133,6 +133,7 @@ def run_domain(config: RunConfig) -> Results:
     api_value = getattr(config, "api_key", None)
     if api_value:
         lightllm_args["api_key"] = api_value
+        
 
     config.llm_args_agent.update(lightllm_args)
 
