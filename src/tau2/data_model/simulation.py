@@ -24,7 +24,7 @@ from tau2.data_model.message import Message
 from tau2.data_model.tasks import Action, EnvAssertion, RewardType, Task
 from tau2.environment.environment import EnvironmentInfo
 from tau2.utils.utils import get_now
-
+  
 
 class RunConfig(BaseModel):
     domain: Annotated[
@@ -165,6 +165,94 @@ class RunConfig(BaseModel):
         Field(
             description="Whether to enforce communication protocol rules (e.g., no mixed messages with text and tool calls)",
             default=False,
+        ),
+    ]
+    
+    # API相关参数
+    api_base: Annotated[
+        Optional[str],
+        Field(
+            description="API base URL for the model provider",
+            default=None,
+        ),
+    ]
+
+    api_key: Annotated[
+        Optional[str],
+        Field(
+            description="API base KEY for the model provider",
+            default=None,
+        ),
+    ]
+    # LightLLM相关参数
+    top_p: Annotated[
+        float,
+        Field(
+            description="Top-p sampling parameter for LightLLM",
+            default=0.95,
+        ),
+    ]
+    top_k: Annotated[
+        int,
+        Field(
+            description="Top-k sampling parameter for LightLLM",
+            default=20,
+        ),
+    ]
+    temperature: Annotated[
+        float,
+        Field(
+            description="Temperature parameter for LightLLM",
+            default=0.6,
+        ),
+    ]
+    repetition_penalty: Annotated[
+        float,
+        Field(
+            description="Repetition penalty parameter for LightLLM",
+            default=1.05,
+        ),
+    ]
+    max_new_tokens: Annotated[
+        int,
+        Field(
+            description="Maximum new tokens for LightLLM",
+            default=8192,
+        ),
+    ]
+    do_sample: Annotated[
+        bool,
+        Field(
+            description="Whether to use sampling for LightLLM",
+            default=True,
+        ),
+    ]
+    skip_special_tokens: Annotated[
+        bool,
+        Field(
+            description="Whether to skip special tokens for LightLLM",
+            default=False,
+        ),
+    ]
+    add_special_tokens: Annotated[
+        bool,
+        Field(
+            description="Whether to add special tokens for LightLLM",
+            default=False,
+        ),
+    ]
+    stop_sequences: Annotated[
+        list[str],
+        Field(
+            description="Stop sequences for LightLLM",
+            default=["<|im_end|>"],
+        ),
+    ]
+    enable_thinking: Annotated[
+        bool,
+        Field(
+            description="Whether to use thinking for LightLLM",
+            default=True,
         ),
     ]
 
