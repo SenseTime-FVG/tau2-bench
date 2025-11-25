@@ -137,18 +137,19 @@ def run_domain(config: RunConfig) -> Results:
 
     config.llm_args_agent.update(lightllm_args)
 
-    # user默认为gpt4.1，用环境变量中的url和api，YouRouter 没有topk和enable thinking选项
-    user_model_args = {
-        "top_p": config.top_p,
-        "temperature": config.temperature,
-        "repetition_penalty": config.repetition_penalty,
-        "max_new_tokens": config.max_new_tokens,
-        "do_sample": config.do_sample,
-        "skip_special_tokens": config.skip_special_tokens,
-        "add_special_tokens": config.add_special_tokens,
-        "stop_sequences": config.stop_sequences,
-    }
-    config.llm_args_user.update(user_model_args)
+    if not config.llm_user.startswith("azure/"):
+        # user默认为gpt4.1，用环境变量中的url和api，YouRouter 没有topk和enable thinking选项
+        user_model_args = {
+            "top_p": config.top_p,
+            "temperature": config.temperature,
+            "repetition_penalty": config.repetition_penalty,
+            "max_new_tokens": config.max_new_tokens,
+            "do_sample": config.do_sample,
+            "skip_special_tokens": config.skip_special_tokens,
+            "add_special_tokens": config.add_special_tokens,
+            "stop_sequences": config.stop_sequences,
+        }
+        config.llm_args_user.update(user_model_args)
 
     config.validate()
     ConsoleDisplay.display_run_config(config)
