@@ -146,7 +146,7 @@ def add_run_args(parser):
     
     # API相关参数
     parser.add_argument("--api_base", default="http://10.119.17.112:60012/generate", type=str, help="API base URL for the model provider")
-    parser.add_argument("--api_key", type=str, default=None, help="API key for the model provider (optional)")
+    parser.add_argument("--api_key", type=str, default="xxx", help="API key for the model provider (optional)")
 
     # 新增lightllm的参数
     parser.add_argument("--top_p", type=float, default=0.95, help="Top-p sampling parameter for LightLLM")
@@ -154,6 +154,7 @@ def add_run_args(parser):
     parser.add_argument("--temperature", type=float, default=0.6, help="Temperature parameter for LightLLM")
     parser.add_argument("--repetition_penalty", type=float, default=1.05, help="Repetition penalty parameter for LightLLM")
     parser.add_argument("--max_new_tokens", type=int, default=8192, help="Maximum new tokens for LightLLM")
+    parser.add_argument("--max_tokens", type=int, default=8192, help="Maximum tokens for the model")
     parser.add_argument("--do_sample", action="store_true", default=False, help="Whether to use sampling for LightLLM")
     parser.add_argument("--skip_special_tokens", action="store_true", default=False, help="Whether to skip special tokens for LightLLM")
     parser.add_argument("--add_special_tokens", action="store_true", default=False, help="Whether to add special tokens for LightLLM")

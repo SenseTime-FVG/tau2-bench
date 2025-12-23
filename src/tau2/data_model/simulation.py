@@ -184,6 +184,13 @@ class RunConfig(BaseModel):
             default=None,
         ),
     ]
+    max_tokens: Annotated[
+        int,
+        Field(
+            description="Maximum tokens for the model",
+            default=8192,
+        ),
+    ]
     # LightLLM相关参数
     top_p: Annotated[
         float,
