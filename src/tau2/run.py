@@ -120,6 +120,7 @@ def run_domain(config: RunConfig) -> Results:
         "top_p": config.top_p,
         "top_k": config.top_k,
         "enable_thinking": config.enable_thinking,
+        "chat_template_kwargs": {"enable_thinking": config.enable_thinking},
         "temperature": config.temperature,
         "repetition_penalty": config.repetition_penalty,
         "max_new_tokens": config.max_new_tokens,
