@@ -123,8 +123,9 @@ class ParticipantMessageBase(BaseModel):
         """
         if self.content is None:
             return False
-        if isinstance(self.content, str) and self.content.strip() == "":
-            return False
+        # 很多模型在有 toolcall 时，返回 content 为空，所以这边注释这个条件
+        # if isinstance(self.content, str) and self.content.strip() == "":
+        #     return False
         return True
 
     def is_tool_call(self) -> bool:
